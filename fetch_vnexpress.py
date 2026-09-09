@@ -21,8 +21,8 @@ FEEDS = [
         "limit": 3,
     },
     {
-        "name": "Tin xem nhiều",
-        "url": "https://vnexpress.net/rss/tin-xem-nhieu.rss",
+        "name": "Thời sự",
+        "url": "https://vnexpress.net/rss/thoi-su.rss",
         "limit": 10,
     },
 ]
