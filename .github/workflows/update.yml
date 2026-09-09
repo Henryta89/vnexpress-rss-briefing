@@ -1,0 +1,41 @@
+name: Update VnExpress RSS Briefing
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "50 11 * * *"
+      timezone: "Asia/Ho_Chi_Minh"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vnexpress-rss-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Fetch VnExpress RSS
+        run: python3 fetch_vnexpress.py
+
+      - name: Commit refreshed page
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add docs/index.html
+
+          if git diff --cached --quiet; then
+            echo "No page changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: refresh VnExpress RSS briefing"
+          git push
