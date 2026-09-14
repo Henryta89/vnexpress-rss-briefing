@@ -4,11 +4,8 @@ on:
   workflow_dispatch:
 
   schedule:
-    # 11:30 Asia/Ho_Chi_Minh (UTC+7)
-    - cron: "30 4 * * *"
-  
-    # 11:50 Asia/Ho_Chi_Minh (UTC+7)
-    - cron: "50 4 * * *"
+    # 08:37 Asia/Ho_Chi_Minh = 01:37 UTC
+    - cron: "37 1 * * *"
 
 permissions:
   contents: write
